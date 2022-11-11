@@ -32,7 +32,7 @@ def prveCvicenie():
 
     return print(f"Prehodene hodnoty: \n a = {a} \n b = {b}")
 
-prveCvicenie()
+#prveCvicenie()
 
 # ++ Zadanie k druehmu cviceniu:
 #    Napis parser s prikazmi: print / plus / minus
@@ -78,6 +78,32 @@ def druheCvicenie():
                     print(f"++ Expected integers. \n Error: {error}")
                 except IndexError as error:
                     print(f"++ Few arguments provided. \n Error: {error}")
+
+            case "násobenie" | "*":
+                try:
+                    numbers = [ int(i) for i in args ]
+                    save = numbers[0]
+                    for pozicia in range (len(numbers) - 1):
+                        save = save * numbers[pozicia + 1]
+                    print(save)
+                except ValueError as error:
+                    print(f"++ Expected integers. \n Error: {error}")
+                except IndexError as error:
+                    print(f"++ Few arguments provided. \n Error: {error}")
+
+            case "delenie" | "/":
+                try:
+                    numbers = [ int(i) for i in args ]
+                    save = numbers[0]
+                    for pozicia in range (len(numbers) - 1):
+                        save = save / numbers[pozicia + 1]
+                    print(round(save, 2))
+                except ValueError as error:
+                    print(f"++ Expected integers. \n Error: {error}")
+                except IndexError as error:
+                    print(f"++ Few arguments provided. \n Error: {error}")
+                except ZeroDivisionError as error:
+                    print("si chuj")
 
             case "help" | 'h' | "?":
                 print("++ Currently available commands: \n"
