@@ -25,14 +25,14 @@
 
 # Mozne riesenie:
 def prveCvicenie():
-
     a = 4239
     b = 12
     a, b = b, a
 
     return print(f"Prehodene hodnoty: \n a = {a} \n b = {b}")
 
-prveCvicenie()
+
+# prveCvicenie()
 
 # ++ Zadanie k druehmu cviceniu:
 #    Napis parser s prikazmi: print / plus / minus
@@ -42,9 +42,7 @@ prveCvicenie()
 
 # Mozne riesenie:
 def druheCvicenie():
-
     while True:
-
 
         cmdArgs = input("> ").split()
         while len(cmdArgs) < 1:
@@ -55,15 +53,15 @@ def druheCvicenie():
 
             case "print":
                 if len(args) != 0:
-                    print( " ".join(args) )
+                    print(" ".join(args))
                 else:
                     print("++ Few arguments provided.")
 
             case "plus" | "+":
                 # Filip, nie, NECHCE sa mi robit to cez if elif
                 try:
-                    numbers = [ int(i) for i in args ]
-                    print( sum(numbers) )
+                    numbers = [int(i) for i in args]
+                    print(sum(numbers))
                 except ValueError as error:
                     print(f"++ Expected integers. \n Error: {error}")
                 except IndexError as error:
@@ -72,12 +70,51 @@ def druheCvicenie():
             case "minus" | "-":
                 # Filip, nie, NECHCE sa mi robit to cez if elif
                 try:
-                    numbers = [ int(i) for i in args ]
-                    print( numbers[0] - sum(numbers[1:]) )
+                    numbers = [int(i) for i in args]
+                    print(numbers[0] - sum(numbers[1:]))
                 except ValueError as error:
                     print(f"++ Expected integers. \n Error: {error}")
                 except IndexError as error:
                     print(f"++ Few arguments provided. \n Error: {error}")
+
+            case "násobenie" | "*":
+                try:
+                    numbers = [int(i) for i in args]
+                    save = numbers[0]
+                    for pozicia in range(len(numbers) - 1):
+                        save = save * numbers[pozicia + 1]
+                    print(save)
+                except ValueError as error:
+                    print(f"++ Expected integers. \n Error: {error}")
+
+                except IndexError as error:
+                    print(f"++ Few arguments provided. \n Error: {error}")
+
+            case "delenie" | "/":
+                try:
+                    numbers = [int(i) for i in args]
+                    save = numbers[0]
+                    for pozicia in numbers[1:]:
+                        save /= pozicia
+                    print(round(save, 2))
+                except ValueError as error:
+                    print(f"++ Expected integers. \n Error: {error}")
+                except IndexError as error:
+                    print(f"++ Few arguments provided. \n Error: {error}")
+                except ZeroDivisionError as error:
+                    print(f"++ si chuj. \n Error: {error}")
+
+            case "faktorial" | "!":
+                try:
+                    numbers = [int(i) for i in args]
+                    save, unsave = numbers[0], numbers[0]
+                    for pozicia in range(unsave - 1):
+                        save = save * (unsave - (pozicia + 1))
+                    print(save)
+                except ValueError as error:
+                    print(f"++ Expected integers. \n Error: {error}")
+
+
 
             case "help" | 'h' | "?":
                 print("++ Currently available commands: \n"
@@ -87,6 +124,7 @@ def druheCvicenie():
                       "help")
 
             case _:
-                print( f"++ Invalid command. \n Command: {mainArg}" )
+                print(f"++ Invalid command. \n Command: {mainArg}")
+
 
 druheCvicenie()
